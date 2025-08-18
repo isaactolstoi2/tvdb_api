@@ -4,15 +4,11 @@ name = "tvdb-api"
 dynamic = ["version"]
 description = "Interface to thetvdb.com"
 readme = "README.md"
-license = ""
+license = "unlicense"
 authors = [
     { name = "dbr/Ben" },
 ]
 classifiers = [
-    "Intended Audience :: Developers",
-    "License :: Public Domain",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
