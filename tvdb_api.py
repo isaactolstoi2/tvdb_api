@@ -213,7 +213,7 @@ class ConsoleUI(BaseUI):
 
         while True:  # return breaks this loop
             try:
-                print("Enter choice (first number, return for default, 'all', ? for help):")
+                print("Enter choice (first number, return for default, 'a','n' ? for help):")
                 ans = input()
             except KeyboardInterrupt:
                 raise TvdbUserAbort("User aborted (^c keyboard interupt)")
@@ -235,12 +235,15 @@ class ConsoleUI(BaseUI):
                     print("## Help")
                     print("# Enter the number that corresponds to the correct show.")
                     print("# a - display all results")
-                    print("# all - display all results")
+                    print("# n - none of the listed")
                     print("# ? - this help")
                     print("# q - abort tvnamer")
                     print("# Press return with no input to select first result")
                 elif ans.lower() in ["a", "all"]:
                     self._display_series(all_series, limit=None)
+                elif ans.lower() in ['n']:
+                    LOG.debug('user did not see a match' )
+                    return None
                 else:
                     LOG.debug('Unknown keypress %s' % (ans))
             else:
@@ -1031,6 +1034,8 @@ class Tvdb:
         else:
             LOG.debug('Getting show %s' % name)
             selected_series = self._get_series(name)
+            if selected_series is None:
+                return None
             sid = selected_series['id']
             LOG.debug('Got %(seriesName)s, id %(id)s' % selected_series)
 
@@ -1047,6 +1052,9 @@ class Tvdb:
             sid = key
         else:
             sid = self._name_to_sid(key)
+            if sid is None:
+                LOG.debug("no show selected")
+                return None
             LOG.debug('Got series id %s' % sid)
 
         if sid not in self.shows:
