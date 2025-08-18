@@ -1,3 +1,32 @@
+
+[project]
+name = "tvdb-api"
+dynamic = ["version"]
+description = "Interface to thetvdb.com"
+readme = "README.md"
+license = ""
+authors = [
+    { name = "dbr/Ben" },
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: Public Domain",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Multimedia",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "requests",
+    "requests_cache",
+]
+
+[project.urls]
+
 [tool.black]
 line-length = 100
 skip-string-normalization = true
